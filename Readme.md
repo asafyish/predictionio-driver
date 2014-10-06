@@ -8,7 +8,7 @@
 
 ```js
 var predictionio = require('predictionio-driver');
-var events = new predictionio.Events(1); // 1 == App id
+var client = new predictionio.Events(1); // 1 == App id
 
 // Returns the server status
 client.status().
