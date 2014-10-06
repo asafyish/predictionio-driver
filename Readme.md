@@ -26,7 +26,13 @@ client.createUser({uid: 'user-id'}).
 	});
 	
 // Register a new item
-client.createItem({iid: 'item-id', properties: {pio_itypes: ['type1']}, eventTime: new Date().toISOString()}).
+client.createItem({
+	iid: 'item-id',
+	properties: {
+		pio_itypes: ['type1']
+	}, 
+	eventTime: new Date().toISOString()
+}).
 	then(function(result) {
 		console.log(result); // Prints "{eventId: 'something'}"
 	}).
@@ -36,17 +42,17 @@ client.createItem({iid: 'item-id', properties: {pio_itypes: ['type1']}, eventTim
 	
 // Register a new user-to-item action
 client.createAction({
-			event: 'view',
-			uid: 'user-id,
-			iid: 'item-id',
-			eventTime: new Date().toISOString()
-		}).
-		then(function(result) {
-    		console.log(result); // Prints "{eventId: 'something'}"
-    }).
-    catch(function(err) {
-    	console.error(err); // Something went wrong
-   	});
+	event: 'view',
+	uid: 'user-id,
+	iid: 'item-id',
+	eventTime: new Date().toISOString()
+}).
+	then(function(result) {
+			console.log(result); // Prints "{eventId: 'something'}"
+	}).
+	catch(function(err) {
+		console.error(err); // Something went wrong
+	});
 ```
 
 ## Retrieving recommendations
@@ -56,11 +62,12 @@ var predictionio = require('predictionio-driver');
 var engine = new predictionio.Engine('http://localhost:8000'); // Engine url
 
 engine.sendQuery({
-			uid: 'user-id',
-			n: 1
-		}).then(function (result) {
-			console.log(result);
-		});
+	uid: 'user-id',
+	n: 1
+}).
+	then(function (result) {
+		console.log(result);
+	});
 ```
 
 ## License 
