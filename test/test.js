@@ -35,9 +35,14 @@ describe('Testing PredictionIO events', function () {
 		return expect(client.status()).to.eventually.deep.equal({status: 'alive'});
 	});
 
-	it('[Callback] Driver should return alive on status check', function () {
-		client.status(function (status) {
+	it('[Callback] Driver should return alive on status check', function (done) {
+		client.status(function (err, status) {
+			if (err) {
+				return done(err);
+			}
+
 			expect(status).to.deep.equal({status: 'alive'});
+			done();
 		});
 	});
 
@@ -72,7 +77,11 @@ describe('Testing PredictionIO events', function () {
 				prop6: 4.56
 			},
 			eventTime: new Date().toISOString()
-		}, function (result) {
+		}, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+
 			expect(result).to.have.property('eventId');
 			done();
 		});
@@ -83,7 +92,11 @@ describe('Testing PredictionIO events', function () {
 	});
 
 	it('[Callback] Driver should create a user', function (done) {
-		client.createUser({uid: 'dummy2@example.com'}, function (result) {
+		client.createUser({uid: 'dummy2@example.com'}, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+
 			expect(result).to.have.property('eventId');
 			done();
 		});
@@ -94,7 +107,11 @@ describe('Testing PredictionIO events', function () {
 	});
 
 	it('[Callback] Driver should create an item', function (done) {
-		client.createItem({iid: '2', properties: {pio_itypes: ['type2']}, eventTime: new Date().toISOString()}, function (result) {
+		client.createItem({iid: '2', properties: {pio_itypes: ['type2']}, eventTime: new Date().toISOString()}, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+
 			expect(result).to.have.property('eventId');
 			done();
 		});
@@ -115,7 +132,11 @@ describe('Testing PredictionIO events', function () {
 			uid: 'dummy2@example.com',
 			iid: '2',
 			eventTime: new Date().toISOString()
-		}, function (result) {
+		}, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+
 			expect(result).to.have.property('eventId');
 			done();
 		});
@@ -149,7 +170,11 @@ describe('Testing PredictionIO engine', function () {
 		client.sendQuery({
 			uid: 'dummy2@example.com',
 			n: 1
-		}, function (result) {
+		}, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+
 			expect(result).to.have.property('items');
 			expect(result.items).to.be.instanceof(Array);
 			done();
