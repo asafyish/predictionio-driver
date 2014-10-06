@@ -1,12 +1,67 @@
-**predictionio-driver** is a PredictionIO 0.8+ client supporting both callback syntax and promise syntax.
-
-## Usage
-
-See tests
+**predictionio-driver** is a PredictionIO 0.8+ driver supporting both callback syntax and promise based syntax.
 
 ## Installation
 
     $ npm install predictionio-driver
+
+## Collecting Data
+
+```js
+var predictionio = require('predictionio-driver');
+var events = new predictionio.Events(1); // 1 == App id
+
+// Returns the server status
+client.status().
+	then(function(status) {
+		console.log(status); // Prints "{status: 'alive'}"
+	});
+
+// Register a new user
+client.createUser({uid: 'user-id'}).
+	then(function(result) {
+		console.log(result); // Prints "{eventId: 'something'}"
+	}).
+	catch(function(err) {
+		console.error(err); // Something went wrong
+	});
+	
+// Register a new item
+client.createItem({iid: 'item-id', properties: {pio_itypes: ['type1']}, eventTime: new Date().toISOString()}).
+	then(function(result) {
+		console.log(result); // Prints "{eventId: 'something'}"
+	}).
+	catch(function(err) {
+		console.error(err); // Something went wrong
+	});
+	
+// Register a new user-to-item action
+client.createAction({
+			event: 'view',
+			uid: 'user-id,
+			iid: 'item-id',
+			eventTime: new Date().toISOString()
+		}).
+		then(function(result) {
+    		console.log(result); // Prints "{eventId: 'something'}"
+    }).
+    catch(function(err) {
+    	console.error(err); // Something went wrong
+   	});
+```
+
+## Retrieving recommendations
+
+```js
+var predictionio = require('predictionio-driver');
+var engine = new predictionio.Engine('http://localhost:8000'); // Engine url
+
+engine.sendQuery({
+			uid: 'user-id',
+			n: 1
+		}).then(function (result) {
+			console.log(result);
+		});
+```
 
 ## License 
 
