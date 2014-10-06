@@ -79,11 +79,11 @@ describe('Testing PredictionIO events', function () {
 	});
 
 	it('[Promise] Driver should create a user', function () {
-		return expect(client.createUser({uid: 'dummy1@example.com', eventTime: new Date().toISOString()})).to.eventually.have.property('eventId');
+		return expect(client.createUser({uid: 'dummy1@example.com'})).to.eventually.have.property('eventId');
 	});
 
 	it('[Callback] Driver should create a user', function (done) {
-		client.createUser({uid: 'dummy2@example.com', eventTime: new Date().toISOString()}, function (result) {
+		client.createUser({uid: 'dummy2@example.com'}, function (result) {
 			expect(result).to.have.property('eventId');
 			done();
 		});
