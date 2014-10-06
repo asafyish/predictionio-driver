@@ -43,7 +43,7 @@ client.createItem({
 // Register a new user-to-item action
 client.createAction({
 	event: 'view',
-	uid: 'user-id,
+	uid: 'user-id',
 	iid: 'item-id',
 	eventTime: new Date().toISOString()
 }).
