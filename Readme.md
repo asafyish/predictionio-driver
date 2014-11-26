@@ -3,12 +3,14 @@
 ## Installation
 
     $ npm install predictionio-driver
-
+    
 ## Collecting Data
 
 ```js
 var predictionio = require('predictionio-driver');
-var client = new predictionio.Events(1); // 1 == App id
+
+// accessKey is required for PredictionIO 0.8.2+
+var client = new predictionio.Events({appId: 1, accessKey: 'your-access-key'});
 
 // Returns the server status
 client.status().
@@ -59,7 +61,7 @@ client.createAction({
 
 ```js
 var predictionio = require('predictionio-driver');
-var engine = new predictionio.Engine('http://localhost:8000'); // Engine url
+var engine = new predictionio.Engine({url: 'http://localhost:8000'});
 
 engine.sendQuery({
 	uid: 'user-id',

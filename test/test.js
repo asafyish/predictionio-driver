@@ -8,7 +8,7 @@ describe('Testing PredictionIO events', function () {
 	var client;
 
 	before(function () {
-		client = new predictionio.Events(1);
+		client = new predictionio.Events({appId: 1});
 	});
 
 	it('Driver should be a function', function () {
@@ -25,7 +25,7 @@ describe('Testing PredictionIO events', function () {
 
 	it('Driver should throw an error if supplied with string app id', function () {
 		function instantiateEvents() {
-			new predictionio.Events('1');
+			new predictionio.Events({appId: '1'});
 		}
 
 		expect(instantiateEvents).to.throw(Error);
@@ -147,7 +147,7 @@ describe('Testing PredictionIO engine', function () {
 	var client;
 
 	before(function () {
-		client = new predictionio.Engine('http://localhost:8000');
+		client = new predictionio.Engine({url: 'http://localhost:8000'});
 	});
 
 	it('Driver should be a function', function () {
