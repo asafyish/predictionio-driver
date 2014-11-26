@@ -1,6 +1,6 @@
 {
 	"name": "predictionio-driver",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "predictionio-driver is a PredictionIO 0.8+ client supporting both callback syntax and promise syntax",
 	"license": "MIT",
 	"author": "Asaf Yishai",
@@ -26,12 +26,12 @@
 	"devDependencies": {
 		"grunt": "~0.4.5",
 		"grunt-contrib-jshint": "~0.10.0",
-		"grunt-mocha-test": "~0.12.1",
+		"grunt-mocha-test": "~0.12.4",
 		"jshint-stylish": "~1.0.0",
-		"load-grunt-tasks": "~0.6.0",
+		"load-grunt-tasks": "~1.0.0",
 		"time-grunt": "~1.0.0",
-		"mocha": "~1.21.4",
-		"chai": "~1.9.2",
+		"mocha": "~2.0.1",
+		"chai": "~1.10.0",
 		"chai-as-promised": "~4.1.1"
 	},
 	"main": "index.js",
