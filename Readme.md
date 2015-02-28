@@ -31,7 +31,7 @@ client.createUser({uid: 'user-id'}).
 client.createItem({
 	iid: 'item-id',
 	properties: {
-		pio_itypes: ['type1']
+		itypes: ['type1']
 	}, 
 	eventTime: new Date().toISOString()
 }).

@@ -103,11 +103,11 @@ describe('Testing PredictionIO events', function () {
 	});
 
 	it('[Promise] Driver should create an item', function () {
-		return expect(client.createItem({iid: '1', properties: {pio_itypes: ['type1']}, eventTime: new Date().toISOString()})).to.eventually.have.property('eventId');
+		return expect(client.createItem({iid: '1', properties: {itypes: ['type1']}, eventTime: new Date().toISOString()})).to.eventually.have.property('eventId');
 	});
 
 	it('[Callback] Driver should create an item', function (done) {
-		client.createItem({iid: '2', properties: {pio_itypes: ['type2']}, eventTime: new Date().toISOString()}, function (err, result) {
+		client.createItem({iid: '2', properties: {itypes: ['type2']}, eventTime: new Date().toISOString()}, function (err, result) {
 			if (err) {
 				return done(err);
 			}
