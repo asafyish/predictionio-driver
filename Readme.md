@@ -1,4 +1,4 @@
-**predictionio-driver** is a PredictionIO 0.8+ driver supporting both callback syntax and promise based syntax.
+**predictionio-driver** is a PredictionIO 0.9+ driver supporting both callback syntax and promise based syntax.
 
 ## Installation
 
@@ -9,7 +9,7 @@
 ```js
 var predictionio = require('predictionio-driver');
 
-// accessKey is required for PredictionIO 0.9.5+
+// accessKey is required for PredictionIO 0.9+
 var client = new predictionio.Events({appId: 1, accessKey: 'your-access-key'});
 
 // Returns the server status
