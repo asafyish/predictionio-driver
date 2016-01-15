@@ -9,7 +9,7 @@
 ```js
 var predictionio = require('predictionio-driver');
 
-// accessKey is required for PredictionIO 0.8.2+
+// accessKey is required for PredictionIO 0.9.5+
 var client = new predictionio.Events({appId: 1, accessKey: 'your-access-key'});
 
 // Returns the server status
@@ -55,6 +55,48 @@ client.createAction({
 	catch(function(err) {
 		console.error(err); // Something went wrong
 	});
+
+
+// Query an Event
+client.getEvent(EventId).
+	then(function(result) {
+			console.log(result); 
+	}).
+	catch(function(err) {
+		console.error(err); // Something went wrong
+	});
+
+
+// Query Events
+In addition, the following optional parameters are supported:
+
+startTime: time in ISO8601 format. Return events with eventTime >= startTime.
+untilTime: time in ISO8601 format. Return events with eventTime < untilTime.
+entityType: String. The entityType. Return events for this entityType only.
+entityId: String. The entityId. Return events for this entityId only.
+limit: Integer. The number of record events returned. Default is 20. -1 to get all.
+reversed: Boolean. Must be used with both entityType and entityId specified, returns events in reversed chronological order. Default is false.
+
+client.getEvents({limit:10}).
+	then(function(result) {
+			console.log(result); 
+	}).
+	catch(function(err) {
+		console.error(err); // Something went wrong
+	});
+
+
+// Remove an Event
+client.deleteEvent(EventId).
+	then(function(result) {
+			console.log(result); // Prints "{eventId: 'something'}"
+	}).
+	catch(function(err) {
+		console.error(err); // Something went wrong
+	});
+
+
+
 ```
 
 ## Retrieving recommendations
