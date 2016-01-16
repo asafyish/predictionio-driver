@@ -2,13 +2,25 @@
 
 var chai = require('chai').use(require('chai-as-promised'));
 var expect = chai.expect;
+var assert = chai.assert;
 var predictionio = require('../');
+
+
+var eventsUrl= process.env.PIOEventUrl || 'http://localhost:7070';
+var queryUrl= process.env.PIOQueryUrl || 'http://localhost:8000';
+var appID= parseInt(process.env.PIOAppID || 4);
+var accessKey=process.env.PIOAccessKey || null;
+
 
 describe('Testing PredictionIO events', function () {
 	var client;
 
 	before(function () {
-		client = new predictionio.Events({appId: 1});
+		client = new predictionio.Events({
+			url:eventsUrl,
+			appId: appID,
+			accessKey:accessKey
+		});
 	});
 
 	it('Driver should be a function', function () {
@@ -125,7 +137,7 @@ describe('Testing PredictionIO events', function () {
 			eventTime: new Date().toISOString()
 		})).to.eventually.have.property('eventId');
 	});
-
+	var EventId;
 	it('[Callback] Driver should create a user to item action', function (done) {
 		client.createAction({
 			event: 'view',
@@ -136,18 +148,58 @@ describe('Testing PredictionIO events', function () {
 			if (err) {
 				return done(err);
 			}
-
 			expect(result).to.have.property('eventId');
+			EventId=result.eventId;
 			done();
 		});
 	});
+
+
+	it('[Callback] Driver should get a action item', function (done) {
+		client.getEvent(EventId, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+			//console.log(result);
+			expect(result).to.have.property('eventId');
+			assert.equal(result.eventId, EventId, '== EventId should be equal');
+			done();
+		});
+	});
+
+
+
+	it('[Callback] Driver should get a action items', function (done) {
+		client.getEvents({}, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+			//console.log(result);
+			expect(result).to.be.instanceof(Array);
+			done();
+		});
+	});
+
+
+	it('[Callback] Driver should delete a action item', function (done) {
+		client.deleteEvent(EventId, function (err, result) {
+			if (err) {
+				return done(err);
+			}
+			//console.log(result);
+			expect(result).to.have.property('message');
+			done();
+		});
+	});
+
 });
+
 
 describe('Testing PredictionIO engine', function () {
 	var client;
 
 	before(function () {
-		client = new predictionio.Engine({url: 'http://localhost:8000'});
+		client = new predictionio.Engine({url: queryUrl});
 	});
 
 	it('Driver should be a function', function () {
@@ -160,8 +212,9 @@ describe('Testing PredictionIO engine', function () {
 			uid: 'dummy1@example.com',
 			n: 1
 		}).then(function (result) {
-			expect(result).to.have.property('items');
-			expect(result.items).to.be.instanceof(Array);
+			console.log(result);
+			expect(result).to.have.property('itemScores');
+			expect(result.itemScores).to.be.instanceof(Array);
 			done();
 		});
 	});
@@ -174,9 +227,9 @@ describe('Testing PredictionIO engine', function () {
 			if (err) {
 				return done(err);
 			}
-
-			expect(result).to.have.property('items');
-			expect(result.items).to.be.instanceof(Array);
+			console.log(result);
+			expect(result).to.have.property('itemScores');
+			expect(result.itemScores).to.be.instanceof(Array);
 			done();
 		});
 	});
