@@ -1,6 +1,6 @@
 {
 	"name": "predictionio-driver",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "predictionio-driver is a PredictionIO 0.8+ client supporting both callback syntax and promise syntax",
 	"license": "MIT",
 	"author": "Asaf Yishai",
@@ -19,9 +19,9 @@
 		"machine learning"
 	],
 	"dependencies": {
-		"bluebird": "~2.9.30",
-		"request": "~2.58.0",
-		"lodash": "~3.9.3"
+		"bluebird": "~3.0.0",
+		"request": "~2.67.0",
+		"lodash": "~3.0.0"
 	},
 	"devDependencies": {
 		"grunt": "~0.4.5",
@@ -30,7 +30,7 @@
 		"jshint-stylish": "~2.0.1",
 		"load-grunt-tasks": "~3.2.0",
 		"time-grunt": "~1.2.1",
-		"mocha": "~2.2.5",
+		"mocha": "~2.3.4",
 		"chai": "~3.0.0",
 		"chai-as-promised": "~5.1.0"
 	},
