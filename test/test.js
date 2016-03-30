@@ -6,8 +6,10 @@ var assert = chai.assert;
 var predictionio = require('../');
 
 
-var eventsUrl= process.env.PIOEventUrl || 'http://localhost:7070';
-var queryUrl= process.env.PIOQueryUrl || 'http://localhost:8000';
+var eventsUrl= process.env.PIOEventUrl || 'http://localhost';
+var eventsPort= process.env.PIOEventPort || '7070';
+var queryUrl= process.env.PIOQueryUrl || 'http://localhost';
+var queryPort =  process.env.PIOQueryPort ||'8000';
 var appID= parseInt(process.env.PIOAppID || 4);
 var accessKey=process.env.PIOAccessKey || null;
 
