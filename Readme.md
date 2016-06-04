@@ -3,7 +3,7 @@
 ## Installation
 
     $ npm install predictionio-driver
-    
+
 ## Collecting Data
 
 ```js
@@ -26,13 +26,13 @@ client.createUser({uid: 'user-id'}).
 	catch(function(err) {
 		console.error(err); // Something went wrong
 	});
-	
+
 // Register a new item
 client.createItem({
 	iid: 'item-id',
 	properties: {
 		itypes: ['type1']
-	}, 
+	},
 	eventTime: new Date().toISOString()
 }).
 	then(function(result) {
@@ -41,7 +41,7 @@ client.createItem({
 	catch(function(err) {
 		console.error(err); // Something went wrong
 	});
-	
+
 // Register a new user-to-item action
 client.createAction({
 	event: 'view',
@@ -60,7 +60,7 @@ client.createAction({
 // Query an Event
 client.getEvent(EventId).
 	then(function(result) {
-			console.log(result); 
+			console.log(result);
 	}).
 	catch(function(err) {
 		console.error(err); // Something went wrong
@@ -79,7 +79,7 @@ reversed: Boolean. Must be used with both entityType and entityId specified, ret
 
 client.getEvents({limit:10}).
 	then(function(result) {
-			console.log(result); 
+			console.log(result);
 	}).
 	catch(function(err) {
 		console.error(err); // Something went wrong
@@ -101,6 +101,7 @@ client.deleteEvent(EventId).
 
 ## Retrieving recommendations
 
+### Plain Version
 ```js
 var predictionio = require('predictionio-driver');
 var engine = new predictionio.Engine({url: 'http://localhost:8000'});
@@ -114,7 +115,21 @@ engine.sendQuery({
 	});
 ```
 
-## License 
+### Disabling Strict SSL (for local self-signed certificated)
+```js
+var predictionio = require('predictionio-driver');
+var engine = new predictionio.Engine({url: 'https://localhost:8000', strictSSL: false});
+
+engine.sendQuery({
+	uid: 'user-id',
+	n: 1
+}).
+	then(function (result) {
+		console.log(result);
+	});
+```
+
+## License
 
 The MIT License (MIT)
 
