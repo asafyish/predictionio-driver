@@ -1,6 +1,6 @@
 {
 	"name": "predictionio-driver",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "predictionio-driver is a PredictionIO 0.8+ client supporting both callback syntax and promise syntax",
 	"license": "MIT",
 	"author": "Asaf Yishai",
