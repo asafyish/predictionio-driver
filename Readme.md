@@ -104,7 +104,7 @@ client.deleteEvent(EventId).
 ### Plain Version
 ```js
 var predictionio = require('predictionio-driver');
-var engine = new predictionio.Engine({url: 'http://localhost:8000'});
+var engine = new predictionio.Engine({url: 'http://localhost'});
 
 engine.sendQuery({
 	uid: 'user-id',
@@ -118,7 +118,7 @@ engine.sendQuery({
 ### Disabling Strict SSL (for local self-signed certificated)
 ```js
 var predictionio = require('predictionio-driver');
-var engine = new predictionio.Engine({url: 'https://localhost:8000', strictSSL: false});
+var engine = new predictionio.Engine({url: 'https://localhost', strictSSL: false});
 
 engine.sendQuery({
 	uid: 'user-id',
