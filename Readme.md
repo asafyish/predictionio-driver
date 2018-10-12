@@ -10,7 +10,7 @@
 var predictionio = require('predictionio-driver');
 
 // accessKey is required for PredictionIO 0.9+
-var client = new predictionio.Events({appId: 1, accessKey: 'your-access-key'});
+var client = new predictionio.Events({accessKey: 'your-access-key'});
 
 // Returns the server status
 client.status().
