@@ -10,7 +10,6 @@ var eventsUrl= process.env.PIOEventUrl || 'http://localhost';
 var eventsPort= process.env.PIOEventPort || '7070';
 var queryUrl= process.env.PIOQueryUrl || 'http://localhost';
 var queryPort =  process.env.PIOQueryPort ||'8000';
-var appID= parseInt(process.env.PIOAppID || 4);
 var accessKey=process.env.PIOAccessKey || null;
 
 
@@ -20,7 +19,6 @@ describe('Testing PredictionIO events', function () {
 	before(function () {
 		client = new predictionio.Events({
 			url:eventsUrl,
-			appId: appID,
 			accessKey:accessKey
 		});
 	});
@@ -32,14 +30,6 @@ describe('Testing PredictionIO events', function () {
 	it('Driver should throw an error if not supplied with app id', function () {
 		function instantiateEvents() {
 			new predictionio.Events();
-		}
-
-		expect(instantiateEvents).to.throw(Error);
-	});
-
-	it('Driver should throw an error if supplied with string app id', function () {
-		function instantiateEvents() {
-			new predictionio.Events({appId: '1'});
 		}
 
 		expect(instantiateEvents).to.throw(Error);
